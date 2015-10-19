@@ -1,0 +1,19 @@
+<ion-modal-view class="new-complaint">
+  <ion-content padding="true">
+    <button class="button button-clear icon ion-android-close" ng-click="closeModal()"></button>
+    <div class="list">
+      <label class="item item-input">
+        <textarea placeholder="¿Qué está pasando?" msd-elastic="\n"
+        ng-model="complaint.text" autofocus="true"></textarea>
+      </label>
+      <div class="item item-input">
+        <i class="icon ion-location"></i>Maipú, Argentina
+      </div>
+    </div>
+    <div class="list" style="height: 10%;">
+      <div style="height: 100%;" class="item item-button-right">
+        <button class="button button-positive" ng-click="submit()">Reclamar</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

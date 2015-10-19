@@ -1,0 +1,37 @@
+<ion-view>
+  <ion-nav-title class="complaints header">
+    <div class="center">
+      <button class="button icon ion-speakerphone"></button>
+    </div>
+  </ion-nav-title>
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear icon ion-android-more-vertical" ui-sref="account"></button>
+  </ion-nav-buttons>
+  <ion-content padding="true">
+    <div class="list card" ui-sref="^.detail({id: 1})">
+      <div class="item item-avatar">
+        <h2>Julián Mayorga</h2>
+        <p>Vi un gato subido al arbol</p>
+      </div>
+      <div class="item item-image">
+        <img src="http://www.asla.org/sustainablelandscapes/images/greenstreet/GreenStreet_3.jpg">
+      </div>
+    </div>
+    <div class="list card" ui-sref="^.detail({id: 2})">
+      <div class="item item-avatar">
+        <h2>Celso Hacker</h2>
+        <p>Vi un perro subido al arbol</p>
+      </div>
+      <div class="item item-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Little_Green_Street_London.jpg">
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <div class="row buttons">
+      <button class="col button icon ion-compose" ui-sref="^.new"></button>
+      <button class="col button icon ion-camera"></button>
+      <button class="col button icon ion-image"></button>
+    </div>
+  </ion-footer-bar>
+</ion-view>
