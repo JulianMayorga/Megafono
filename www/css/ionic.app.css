@@ -41,7 +41,7 @@ $dark:                            #444 !default;
   height: 100%; }
 
 .logo.icon {
-  font-size: 200px; }
+  font-size: 10em; }
 
 .bar .title {
   margin-top: 5px !important; }
