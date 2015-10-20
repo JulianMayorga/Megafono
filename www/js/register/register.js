@@ -12,8 +12,7 @@ angular.module('Megafono.Register', [])
   var uiSrefNoBack = megafonoUtils.uiSrefNoBack($ionicHistory);
 
   $scope.register = function register(user) {
-    var fbAuth = $firebaseAuth(fb);
-    fbAuth.$createUser({
+    auth.$createUser({
       email: user.email,
       password: user.password
     }).then(function() {

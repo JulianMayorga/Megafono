@@ -13,8 +13,11 @@ angular.module('Megafono.Complaints.List', [ ])
   });
 })
 
-.controller('ComplaintsListController', function ($scope, $ionicPopover, complaints) {
+.controller('ComplaintsListController', function ($scope, $ionicPopover, $ionicNavBarDelegate, complaints) {
   $scope.complaints = complaints;
+  $scope.$on('$ionicView.enter', function(e) {
+    $ionicNavBarDelegate.showBar(true);
+});
 
   $ionicPopover.fromTemplateUrl('js/complaints/list/menu.html', {
     scope: $scope,

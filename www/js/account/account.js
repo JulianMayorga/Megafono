@@ -8,10 +8,15 @@ angular.module('Megafono.Account', [ ])
   });
 })
 
-.controller('AccountController', function ($scope, $ionicHistory, megafonoUtils, megafonoAuth) {
+.controller('AccountController', function ($scope, $ionicHistory, $ionicNavBarDelegate, megafonoUtils) {
+  $ionicNavBarDelegate.showBackButton(true)
   $scope.user = {
-    email: megafonoAuth.data.password.email,
-    profileImage: megafonoAuth.data.password.profileImageURL
+    email: auth.$getAuth().password.email,
+    profileImage: auth.$getAuth().password.profileImageURL
+  };
+  $scope.logout = function logout() {
+    auth.$unauth();
+    $scope.uiSrefNoBack('splash');
   };
   $scope.uiSrefNoBack = megafonoUtils.uiSrefNoBack($ionicHistory);
 });

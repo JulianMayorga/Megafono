@@ -11,17 +11,17 @@ angular.module('Megafono.Complaints.New', [
 })
 
 .controller('NewComplaintController', function($scope, $state, $ionicModal, $ionicPopup,
-  $ionicHistory, $cordovaCamera, Complaints, megafonoAuth) {
+  $ionicHistory, $cordovaCamera, Complaints) {
 
   $scope.complaint = {};
 
   $scope.addComplaint = function addComplaint(complaint) {
     Complaints.$add({
-      'username': megafonoAuth.data.password.email,
+      'username': auth.$getAuth().password.email,
       'text': complaint.text,
       'date': new Date().getTime(),
       'imageSrc': complaint.imageSrc || null,
-      'userProfileImage': megafonoAuth.data.password.profileImageURL
+      'userProfileImage': auth.$getAuth().password.profileImageURL
     });
     $ionicPopup.alert({
      title: 'Muchisimas gracias por su aporte!',
@@ -74,20 +74,13 @@ angular.module('Megafono.Complaints.New', [
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
-    console.log('$destroy');
   });
   // Execute action on hide modal
   $scope.$on('modal.hidden', function() {
     // Execute action
-    console.log('modal.hidden');
     $ionicHistory.nextViewOptions({
       disableBack: true
     });
     $state.go('complaints.list');
-  });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-    console.log('modal.removed');
   });
 });
