@@ -1,20 +1,25 @@
-angular.module('Megafono.Login', [ ])
+angular.module('Megafono.Login', [])
 
-.config(function ($stateProvider) {
+.config(function($stateProvider) {
   $stateProvider.state('login', {
     url: '/login',
     templateUrl: 'js/login/login.html',
-    controller: 'LoginController',
-    resolve: {
-      newsItems: function ($http) {
-        return [];
-      }
-    }
+    controller: 'LoginController'
   });
 })
 
-.controller('LoginController', function ($scope, $ionicHistory, megafonoUtils, newsItems) {
-  $scope.newsItems = newsItems;
+.controller('LoginController', function($scope, $firebaseAuth, $ionicHistory, megafonoUtils) {
+  var uiSrefNoBack = megafonoUtils.uiSrefNoBack($ionicHistory);
 
-  $scope.uiSrefNoBack = megafonoUtils.uiSrefNoBack($ionicHistory);
+  $scope.login = function login(user) {
+    var fbAuth = $firebaseAuth(fb);
+    fbAuth.$authWithPassword({
+      email: user.email,
+      password: user.password
+    }).then(function(authData) {
+      uiSrefNoBack('complaints.list');
+    }).catch(function(error) {
+      console.error("ERROR: " + error);
+    });
+  };
 });

@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('Megafono', [
   'ionic',
+  'Megafono.Firebase',
   'Megafono.Utils',
   'Megafono.Splash',
   'Megafono.Login',

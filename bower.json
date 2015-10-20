@@ -5,6 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.1.0"
   },
   "dependencies": {
-    "angular-elastic": "~2.5.1"
+    "angular-elastic": "~2.5.1",
+    "firebase": "~2.3.1",
+    "angularfire": "~1.1.3"
   }
 }
