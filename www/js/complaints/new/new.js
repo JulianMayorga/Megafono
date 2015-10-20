@@ -10,15 +10,43 @@ angular.module('Megafono.Complaints.New', [
   });
 })
 
-.controller('NewComplaintController', function($scope, $state, $ionicModal, $ionicHistory, Complaints, megafonoAuth) {
+.controller('NewComplaintController', function($scope, $state, $ionicModal,
+  $ionicHistory, $cordovaCamera, Complaints, megafonoAuth) {
+
+  $scope.complaint = {};
+
   $scope.addComplaint = function addComplaint(complaint) {
     Complaints.$add({
       'username': megafonoAuth.data.password.email,
       'text': complaint.text,
-      'imageSrc': 'http://www.asla.org/sustainablelandscapes/images/greenstreet/GreenStreet_3.jpg'
+      'date': new Date().getTime(),
+      'imageSrc': complaint.imageSrc || null,
+      'userProfileImage': megafonoAuth.data.password.profileImageURL
     });
     $scope.closeModal();
   };
+  document.addEventListener("deviceready", function() {
+    $scope.takePicture = function() {
+      var options = {
+        quality: 75,
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 300,
+        targetHeight: 300,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        $scope.complaint.imageSrc = "data:image/jpeg;base64," + imageData;
+      }, function(err) {
+        console.log('Error: ' + err);
+      });
+    };
+  }, false);
+
   $ionicModal.fromTemplateUrl('js/complaints/new/new-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
