@@ -6,13 +6,13 @@ angular.module('Megafono.Complaints.List', [ ])
     templateUrl: 'js/complaints/list/list.html',
     controller: 'ComplaintsListController',
     resolve: {
-      newsItems: function ($http) {
-        return [];
+      complaints: function (Complaints) {
+        return Complaints;
       }
     }
   });
 })
 
-.controller('ComplaintsListController', function ($scope, newsItems) {
-  $scope.newsItems = newsItems;
+.controller('ComplaintsListController', function ($scope, complaints) {
+  $scope.complaints = complaints;
 });

@@ -8,22 +8,15 @@
     <button class="button button-clear icon ion-android-more-vertical" ui-sref="account"></button>
   </ion-nav-buttons>
   <ion-content padding="true">
-    <div class="list card" ui-sref="^.detail({id: 1})">
-      <div class="item item-avatar">
-        <h2>Julián Mayorga</h2>
-        <p>Vi un gato subido al arbol</p>
-      </div>
-      <div class="item item-image">
-        <img src="http://www.asla.org/sustainablelandscapes/images/greenstreet/GreenStreet_3.jpg">
-      </div>
-    </div>
-    <div class="list card" ui-sref="^.detail({id: 2})">
-      <div class="item item-avatar">
-        <h2>Celso Hacker</h2>
-        <p>Vi un perro subido al arbol</p>
-      </div>
-      <div class="item item-image">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Little_Green_Street_London.jpg">
+    <div ng-repeat="complaint in complaints">
+      <div class="list card" ui-sref="^.detail({id: complaint.id})">
+        <div class="item item-avatar">
+          <h2>{{complaint.username}}</h2>
+          <p>{{complaint.text}}</p>
+        </div>
+        <div class="item item-image">
+          <img ng-src="{{complaint.imageSrc}}">
+        </div>
       </div>
     </div>
   </ion-content>

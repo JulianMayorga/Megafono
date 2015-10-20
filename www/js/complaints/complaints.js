@@ -20,6 +20,11 @@ angular.module('Megafono.Complaints', [
   });
 })
 
+.factory('Complaints', function($firebaseArray) {
+  var complaintsRef = new Firebase("https://megafono.firebaseio.com/complaints");
+  return $firebaseArray(complaintsRef);
+})
+
 .controller('ComplaintsController', function ($scope, newsItems) {
   $scope.newsItems = newsItems;
 });

@@ -6,17 +6,19 @@ angular.module('Megafono.Complaints.New', [
   $stateProvider.state('complaints.new', {
     url: '/new',
     templateUrl: 'js/complaints/new/new.html',
-    controller: 'NewComplaintController',
-    resolve: {
-      newsItems: function($http) {
-        return [];
-      }
-    }
+    controller: 'NewComplaintController'
   });
 })
 
-.controller('NewComplaintController', function($scope, $state, $ionicModal, $ionicHistory, newsItems) {
-  $scope.newsItems = newsItems;
+.controller('NewComplaintController', function($scope, $state, $ionicModal, $ionicHistory, Complaints, megafonoAuth) {
+  $scope.addComplaint = function addComplaint(complaint) {
+    Complaints.$add({
+      'username': megafonoAuth.data.password.email,
+      'text': complaint.text,
+      'imageSrc': 'http://www.asla.org/sustainablelandscapes/images/greenstreet/GreenStreet_3.jpg'
+    });
+    $scope.closeModal();
+  };
   $ionicModal.fromTemplateUrl('js/complaints/new/new-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -35,9 +37,6 @@ angular.module('Megafono.Complaints.New', [
   };
   $scope.closeModal = function() {
     $scope.modal.hide();
-  };
-  $scope.submit = function() {
-    $scope.closeModal();
   };
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
