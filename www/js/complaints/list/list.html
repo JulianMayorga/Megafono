@@ -8,7 +8,7 @@
     <button class="button button-clear icon ion-android-more-vertical" ui-sref="account"></button>
   </ion-nav-buttons>
   <ion-content padding="true">
-    <div ng-repeat="complaint in complaints">
+    <div ng-repeat="complaint in complaints | orderBy:'-date'">
       <div class="list card" ui-sref="^.detail({id: complaint.id})">
         <div class="item item-avatar">
           <img ng-src="{{complaint.userProfileImage}}">

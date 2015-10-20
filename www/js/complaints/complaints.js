@@ -21,8 +21,9 @@ angular.module('Megafono.Complaints', [
 })
 
 .factory('Complaints', function($firebaseArray) {
-  var complaintsRef = new Firebase("https://megafono.firebaseio.com/complaints");
-  return $firebaseArray(complaintsRef);
+  var complaintsRef = new Firebase('https://megafono.firebaseio.com/complaints');
+  var query = complaintsRef.orderByChild('date').limitToLast(25);
+  return $firebaseArray(query);
 })
 
 .controller('ComplaintsController', function ($scope, newsItems) {
