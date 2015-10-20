@@ -1,6 +1,5 @@
 angular.module('Megafono.Complaints', [
   'Megafono.Complaints.List',
-  'Megafono.Complaints.Detail',
   'Megafono.Complaints.New',
 ])
 
