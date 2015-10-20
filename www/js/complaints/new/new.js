@@ -10,7 +10,7 @@ angular.module('Megafono.Complaints.New', [
   });
 })
 
-.controller('NewComplaintController', function($scope, $state, $ionicModal,
+.controller('NewComplaintController', function($scope, $state, $ionicModal, $ionicPopup,
   $ionicHistory, $cordovaCamera, Complaints, megafonoAuth) {
 
   $scope.complaint = {};
@@ -23,7 +23,12 @@ angular.module('Megafono.Complaints.New', [
       'imageSrc': complaint.imageSrc || null,
       'userProfileImage': megafonoAuth.data.password.profileImageURL
     });
-    $scope.closeModal();
+    $ionicPopup.alert({
+     title: 'Muchisimas gracias por su aporte!',
+     template: 'Con su participación haremos juntos la Ciudad donde vivís mejor.'
+   }).then(function(res) {
+     $scope.closeModal();
+   });
   };
   document.addEventListener("deviceready", function() {
     $scope.takePicture = function() {
