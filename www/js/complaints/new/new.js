@@ -1,34 +1,69 @@
 angular.module('Megafono.Complaints.New', [
-  'monospaced.elastic'
+  'monospaced.elastic',
+  'angularReverseGeocode'
 ])
 
 .config(function($stateProvider) {
   $stateProvider.state('complaints.new', {
     url: '/new',
     templateUrl: 'js/complaints/new/new.html',
-    controller: 'NewComplaintController'
+    controller: 'NewComplaintController',
+    resolve: {
+      position: function ($cordovaGeolocation, $q) {
+
+        var deferred = $q.defer();
+
+        var posOptions = {
+          timeout: 10000,
+          enableHighAccuracy: false
+        };
+
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function(pos) {
+            var position = {
+              latitude: pos.coords.latitude,
+              longitude: pos.coords.longitude
+            };
+            deferred.resolve(position);
+          }, function(err) {
+            console.log('Error: ' + err);
+            deferred.resolve({
+              latitude: null,
+              longitude: null
+            });
+          });
+
+          return deferred.promise;
+      }
+    }
   });
 })
 
 .controller('NewComplaintController', function($scope, $state, $ionicModal, $ionicPopup,
-  $ionicHistory, $cordovaCamera, Complaints) {
+  $ionicHistory, $cordovaCamera, Complaints, position) {
 
-  $scope.complaint = {};
+  $scope.complaint = {
+    latitude: position.latitude,
+    longitude: position.longitude
+  };
 
   $scope.addComplaint = function addComplaint(complaint) {
     Complaints.$add({
       'username': auth.$getAuth().password.email,
       'text': complaint.text,
       'date': new Date().getTime(),
+      'latitude': complaint.latitude,
+      'longitude': complaint.longitude,
       'imageSrc': complaint.imageSrc || null,
       'userProfileImage': auth.$getAuth().password.profileImageURL
     });
     $ionicPopup.alert({
-     title: 'Muchisimas gracias por su aporte!',
-     template: 'Con su participación haremos juntos la Ciudad donde vivís mejor.'
-   }).then(function(res) {
-     $scope.closeModal();
-   });
+      title: 'Muchisimas gracias por su aporte!',
+      template: 'Con su participación haremos juntos la Ciudad donde vivís mejor.'
+    }).then(function(res) {
+      $scope.closeModal();
+    });
   };
   document.addEventListener("deviceready", function() {
     $scope.takePicture = function() {

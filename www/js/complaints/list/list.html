@@ -17,6 +17,11 @@
           <img ng-src="{{complaint.userProfileImage}}">
           <h2>{{complaint.username}}</h2>
           <small>{{complaint.date|date:"dd/MM/yyyy h:mma"}}</small>
+          <div ng-if="complaint.latitude && complaint.longitude">
+            <i class="icon ion-location"></i>
+            <reverse-geocode style="display: inline-block" lat="{{complaint.latitude}}" lng="{{complaint.longitude}}" />
+          </div>
+          <hr />
           <div>{{complaint.text}}</div>
         </div>
         <div ng-if="complaint.imageSrc" class="item item-image">

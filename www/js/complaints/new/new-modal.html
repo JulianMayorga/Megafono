@@ -11,8 +11,9 @@
         ng-model="complaint.text" autofocus="true"></textarea>
       </label>
       <img ng-if="complaint.imageSrc" ng-src="{{complaint.imageSrc}}">
-      <div class="item item-input">
-        <i class="icon ion-location"></i>Maipú, Argentina
+      <div ng-if="complaint.latitude && complaint.longitude" class="item item-input">
+        <i class="icon ion-location"></i>
+        <reverse-geocode lat="{{complaint.latitude}}" lng="{{complaint.longitude}}" />
       </div>
     </div>
     <div class="buttons">
