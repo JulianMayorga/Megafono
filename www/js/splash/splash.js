@@ -14,7 +14,7 @@ angular.module('Megafono.Splash', [ ])
       $ionicHistory.nextViewOptions({
         disableBack: true
       });
-      $state.go('complaints.list');
+      $state.go('menu');
     }
   });
 });

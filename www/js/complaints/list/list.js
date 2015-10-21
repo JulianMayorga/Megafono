@@ -1,27 +1,21 @@
-angular.module('Megafono.Complaints.List', [ ])
+angular.module('Megafono.Complaints.List', [])
 
-.config(function ($stateProvider) {
+.config(function($stateProvider) {
   $stateProvider.state('complaints.list', {
     url: '/',
     templateUrl: 'js/complaints/list/list.html',
     controller: 'ComplaintsListController',
     resolve: {
-      complaints: function (Complaints) {
+      complaints: function(Complaints) {
         return Complaints;
       }
     }
   });
 })
 
-.controller('ComplaintsListController', function ($scope, $ionicPopover, $ionicNavBarDelegate, complaints) {
+.controller('ComplaintsListController', function($scope, $ionicNavBarDelegate, complaints) {
   $scope.complaints = complaints;
   $scope.$on('$ionicView.enter', function(e) {
     $ionicNavBarDelegate.showBar(true);
-});
-
-  $ionicPopover.fromTemplateUrl('js/complaints/list/menu.html', {
-    scope: $scope,
-  }).then(function(popover) {
-    $scope.popover = popover;
   });
 });

@@ -11,6 +11,7 @@ angular.module('Megafono', [
   'Megafono.Splash',
   'Megafono.Login',
   'Megafono.Register',
+  'Megafono.Menu',
   'Megafono.Account',
   'Megafono.Complaints',
 ])

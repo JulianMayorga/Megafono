@@ -16,7 +16,7 @@ angular.module('Megafono.Login', [])
       email: user.email,
       password: user.password
     }).then(function(authData) {
-      uiSrefNoBack('complaints.list');
+      uiSrefNoBack('menu');
     }).catch(function(error) {
       console.error("ERROR: " + error);
     });

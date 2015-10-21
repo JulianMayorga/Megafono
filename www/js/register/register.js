@@ -21,7 +21,7 @@ angular.module('Megafono.Register', [])
         password: user.password
       });
     }).then(function(authData) {
-      uiSrefNoBack('complaints.list');
+      uiSrefNoBack('menu');
     }).catch(function(error) {
       console.error('ERROR ' + error);
     });

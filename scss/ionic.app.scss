@@ -20,7 +20,7 @@ $positive:                        #8F1D77 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
-.splash .pane {
+.splash.pane {
   background-color: #8F1D77; /* Violeta */
 }
 .splash button {
@@ -39,6 +39,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 .splash .scroll {
   height: 100%;
+}
+.main-menu {
+  background-color: #8F1D77;
+}
+.main-menu .scroll {
+  height: 100%;
+  background-color: #8F1D77;
+}
+.main-menu .row {
+  height: 25%;
+}
+.main-menu button {
+  min-height: 100%;
+  color: white;
 }
 .new-complaint .scroll {
   height: 100%;
@@ -78,6 +92,36 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+// http://codepen.io/fabiobiondi/pen/PqeWGv
+.grid2x2 {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.grid2x2 > div {
+  display: flex;
+  flex-basis: 33.3%;
+  justify-content: center;
+  flex-direction: column;
+  //border: 1px solid white;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.box {
+  background-color: #8F1D77;
+  align-items: center;
+  color: white;
+}
+
+.box i {
+  font-size: 3em;
+}
+
+.box div {
+  text-align: center;
 }
 
 // Include all of Ionic
